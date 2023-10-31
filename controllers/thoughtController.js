@@ -30,7 +30,17 @@ module.exports = {
   async createThought(req, res) {
     try {
       const thought = await Thought.create(req.body);
-      res.json(thought);
+      const user = await User.findOneAndUpdate(
+        { username: thought.username },
+        { $push: { thoughts: req.params.thoughtId } },
+        { new: true }
+      );
+      if (!user) {
+        return res
+          .status(404)
+          .json({ message: "Thought created. No user with that ID." });
+      }
+      res.json("Thought successfully created.");
     } catch (err) {
       console.log(err);
       return res.status(500).json(err);
@@ -53,7 +63,9 @@ module.exports = {
         { new: true }
       );
       if (!user) {
-        return res.status(404).json({ message: "Thought deleted. No user with that ID." });
+        return res
+          .status(404)
+          .json({ message: "Thought deleted. No user with that ID." });
       }
       res.json({ message: "Thought deleted." });
     } catch (err) {
@@ -91,7 +103,7 @@ module.exports = {
       if (!thought) {
         return res
           .status(404)
-          .json({ message: 'No thought found with that ID :(' })
+          .json({ message: "No thought found with that ID :(" });
       }
 
       res.json(thought);
@@ -111,7 +123,7 @@ module.exports = {
       if (!thought) {
         return res
           .status(404)
-          .json({ message: 'No thought found with that ID.' });
+          .json({ message: "No thought found with that ID." });
       }
 
       res.json(thought);
@@ -120,4 +132,3 @@ module.exports = {
     }
   },
 };
-

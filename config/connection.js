@@ -1,8 +1,11 @@
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/networkDB");
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/networkDB",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
-const connection = mongoose.connection;
-
-module.exports = connection;
-
+module.exports = mongoose.connection;

@@ -1,33 +1,33 @@
-const { Schema, Types } = require('mongoose');
-const { format_date } = require("../utils/helpers")
-const reactionSchema = new Schema(
-  {
+const mongoose = require('mongoose');
+const dateFormat = require('../utils/helpers');
+
+const reactionSchema = new mongoose.Schema({
     reactionId: {
-      type: Schema.Types.ObjectId,
-      default: () => new Types.ObjectId(),
+        type: mongoose.Schema.Types.ObjectId,
+        default: () => new mongoose.Types.ObjectId()
     },
     reactionBody: {
-      type: String,
-      required: true,
-      maxlength: 140,
-    },
-    username: {
-      type: String,
-      required: true,
+        type: String,
+        maxLength: 280,
+        required: true,
     },
     createdAt: {
-      type: Date,
-      default: Date.now,
-      get: ts => format_date(ts)
+        type: Date,
+        default: Date.now(),
+        get: TS => dateFormat(TS),
     },
-  },
-  {
+    username: {
+        type: String,
+        required: true,
+    },
+
+    }, {
     toJSON: {
-      getters: true,
+        getters: true,
     },
     id: false,
-    _id: false
-  }
-);
+    _id: false,
+});
+
 
 module.exports = reactionSchema;

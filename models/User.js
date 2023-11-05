@@ -1,7 +1,7 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
 
-// Schema to create Student model
-const userSchema = new Schema(
+// Schema to create user model
+const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -15,8 +15,8 @@ const userSchema = new Schema(
       unique: true,
       match: [/.+@.+\..+/, 'Must match email address format'],
     },
-    thoughts: [{type: Schema.Types.ObjectId, ref:"thought"}],
-    friends: [{type: Schema.Types.ObjectId, ref:"user"}],
+    thoughts: [{type: mongoose.Schema.Types.ObjectId, ref:"thought"}],
+    friends: [{type: mongoose.Schema.Types.ObjectId, ref:"user"}],
   },
   {
     toJSON: {
@@ -30,6 +30,6 @@ userSchema.virtual("friendCount").get(function () {
   return this.friends.length;
 });
 
-const User = model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;

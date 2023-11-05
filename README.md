@@ -3,22 +3,7 @@
 # Social-Network-API
 
   ## Description
-  This application allows the user to create an account and view, create, edit, and delete posts.
-
-  - WHEN the user logs in
-  - THEN the user can view, create, edit, or delete posts.
-
-  - WHEN the user creates a new post
-  - THEN the new post is displayed on the dashboard.
-
-  - WHEN the user updates a post
-  - THEN the new data is saved to the corresponding post.
-
-  - WHEN the user deletes a post
-  - THEN the data for the corresponding post is deleted. 
-
-  - WHEN the user finished with the application
-  - THEN the user can logout and terminate the session.
+  This application demonstrates how noSQL databases connect users to friends and reactions to thoughts in a back-end social media environment.
 
   ## Table of Contents
   - [Installation](#installation)
@@ -28,15 +13,11 @@
   - [Link](#link-to-site)
 
   ## Installation
-  - bcrypt
-  - dotenv
   - express
-  - express-handlebars
-  - mysql2
-  - sequelize
+  - mongoose
 
   ## Usage
-  Via live Heroku deployment
+  Usage unavailable at this time
 
   ## Contributing
   Contribution unavailable at this time
